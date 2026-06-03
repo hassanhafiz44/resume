@@ -34,10 +34,10 @@ jobs:
           git reset --hard origin/main
 
       - name: Install dependencies
-        run: cd /var/www/resume && bun install --frozen-lockfile --production
+        run: cd /var/www/resume && bun install --frozen-lockfile
 
       - name: Build client
-        run: cd /var/www/resume && bun build src/client/main.tsx --outdir public/dist --target browser --minify
+        run: cd /var/www/resume && bun run build
 
       - name: Restart service
         run: sudo systemctl restart resume

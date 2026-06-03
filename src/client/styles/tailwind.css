@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/*
+ * Use .dark class on <html> to drive Tailwind dark: variants.
+ * ThemeSwitcher and the anti-FOUC script both manage this class.
+ */
+@custom-variant dark (&:is(.dark, .dark *));

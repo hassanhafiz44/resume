@@ -16,7 +16,7 @@ app.get('/resume.pdf', (c) => {
 })
 
 // SPA catch-all — serves the React shell for all other routes
-// /styles/* and /dist/* are served directly by nginx from public/
+// /dist/* (JS bundle + CSS) is served directly by nginx from public/
 app.get('*', () => {
   return new Response(Bun.file(new URL('./client/index.html', import.meta.url)), {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
