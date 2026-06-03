@@ -39,14 +39,32 @@ sudo systemctl status resume
 #        listen 80;
 #        server_name yourdomain.com;
 #
-#        # nginx serves CSS, JS bundle, and favicons directly — never hits Bun
-#        location /styles/ { root /var/www/resume/public; try_files $uri =404; }
-#        location /dist/   { root /var/www/resume/public; try_files $uri =404; }
+#        # Gzip — critical for the JS bundle (403 KB → ~120 KB)
+#        gzip on;
+#        gzip_types text/plain text/css application/javascript application/json image/svg+xml application/manifest+json;
+#        gzip_min_length 1024;
+#        gzip_vary on;
 #
+#        # nginx serves CSS and JS bundle directly — never hits Bun
+#        location /styles/ {
+#            root /var/www/resume/public;
+#            try_files $uri =404;
+#            expires 7d;
+#            add_header Cache-Control "public, immutable";
+#        }
+#        location /dist/ {
+#            root /var/www/resume/public;
+#            try_files $uri =404;
+#            expires 7d;
+#            add_header Cache-Control "public, immutable";
+#        }
+#
+#        # Favicons and web manifest
 #        location ~* ^/(favicon\.ico|favicon-\d+x\d+\.png|apple-touch-icon\.png|android-chrome-\d+x\d+\.png|site\.webmanifest)$ {
 #            root /var/www/resume/public;
 #            access_log off;
 #            expires 30d;
+#            add_header Cache-Control "public, immutable";
 #        }
 #
 #        location / {
