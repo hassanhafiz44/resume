@@ -7,7 +7,14 @@
   <script>
     (function() {
       var t = localStorage.getItem('theme');
-      if (t) document.documentElement.setAttribute('data-theme', t);
+      if (t) {
+        var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (t === systemTheme) {
+          localStorage.removeItem('theme'); // matches OS — let CSS handle it
+        } else {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      }
     })();
   </script>
   <style>
@@ -448,8 +455,15 @@
 
     function toggleTheme() {
       var next = isDark() ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (next === systemTheme) {
+        // Toggling back to system default — remove the override entirely
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      }
       applyIcon();
     }
 
