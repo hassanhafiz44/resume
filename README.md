@@ -32,16 +32,18 @@ sudo systemctl status resume
 #    Add this line via: sudo visudo
 #    <runner-user> ALL=(ALL) NOPASSWD: /bin/systemctl restart resume
 
-# 4. Nginx — proxy port 8086
+# 4. Nginx — proxy port PORT
 #    Add a server block to /etc/nginx/sites-available/resume:
 #
 #    server {
 #        listen 80;
-#        server_name resume.yourdomain.com;
+#        server_name yourdomain.com;
+#
 #        location / {
-#            proxy_pass http://127.0.0.1:8086;
+#            proxy_pass http://127.0.0.1:PORT;
 #            proxy_set_header Host $host;
 #            proxy_set_header X-Real-IP $remote_addr;
+#            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 #        }
 #    }
 #
