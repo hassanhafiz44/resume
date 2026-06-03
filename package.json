@@ -1,0 +1,9 @@
+{
+  "name": "resume",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  }
+}

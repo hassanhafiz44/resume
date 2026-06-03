@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Hassan Javed — Resume</title>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <style>
+    /* ── Tokens: light (default) ── */
+    :root {
+      --bg-page:    #f1f5f9;
+      --bg-card:    #ffffff;
+      --border:     #e2e8f0;
+      --border-row: #f1f5f9;
+      --text-head:  #0f172a;
+      --text-body:  #1e293b;
+      --text-sec:   #334155;
+      --text-muted: #475569;
+      --text-faint: #94a3b8;
+      --text-sub:   #64748b;
+      --accent:     #2563eb;
+      --accent-hov: #1d4ed8;
+      --badge-exp-bg: #eff6ff;
+      --badge-exp-fg: #2563eb;
+      --badge-ski-bg: #f0fdf4;
+      --badge-ski-fg: #16a34a;
+      --shadow:     0 4px 24px rgba(0,0,0,0.08);
+      --toggle-bg:  #e2e8f0;
+      --toggle-fg:  #475569;
+    }
+
+    /* ── Tokens: dark (manual override) ── */
+    [data-theme="dark"] {
+      --bg-page:    #0f172a;
+      --bg-card:    #1e293b;
+      --border:     #334155;
+      --border-row: #283548;
+      --text-head:  #f1f5f9;
+      --text-body:  #e2e8f0;
+      --text-sec:   #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --text-sub:   #94a3b8;
+      --accent:     #60a5fa;
+      --accent-hov: #93c5fd;
+      --badge-exp-bg: #1e3a5f;
+      --badge-exp-fg: #93c5fd;
+      --badge-ski-bg: #14532d;
+      --badge-ski-fg: #86efac;
+      --shadow:     0 4px 24px rgba(0,0,0,0.4);
+      --toggle-bg:  #334155;
+      --toggle-fg:  #cbd5e1;
+    }
+
+    /* ── Tokens: dark (system preference, no manual override) ── */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]):not([data-theme="dark"]) {
+        --bg-page:    #0f172a;
+        --bg-card:    #1e293b;
+        --border:     #334155;
+        --border-row: #283548;
+        --text-head:  #f1f5f9;
+        --text-body:  #e2e8f0;
+        --text-sec:   #cbd5e1;
+        --text-muted: #94a3b8;
+        --text-faint: #64748b;
+        --text-sub:   #94a3b8;
+        --accent:     #60a5fa;
+        --accent-hov: #93c5fd;
+        --badge-exp-bg: #1e3a5f;
+        --badge-exp-fg: #93c5fd;
+        --badge-ski-bg: #14532d;
+        --badge-ski-fg: #86efac;
+        --shadow:     0 4px 24px rgba(0,0,0,0.4);
+        --toggle-bg:  #334155;
+        --toggle-fg:  #cbd5e1;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-body);
+      line-height: 1.6;
+      padding: 2.5rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .card {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 2.5rem 3rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-head);
+    }
+
+    .header .title {
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    .header .contact {
+      margin-top: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--text-sub);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+    }
+
+    .header .contact a { color: var(--text-sub); text-decoration: none; }
+    .header .contact a:hover { color: var(--accent); }
+
+    /* ── Header action buttons ── */
+    .header-actions {
+      position: absolute;
+      top: 2.5rem;
+      right: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .download-btn:hover { background: var(--accent-hov); }
+    .download-btn svg { width: 14px; height: 14px; }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background: var(--toggle-bg);
+      color: var(--toggle-fg);
+      transition: background 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--border); }
+    .theme-toggle svg { width: 15px; height: 15px; }
+
+    /* ── Sections ── */
+    .body { padding: 0 3rem 3rem; }
+
+    section { margin-top: 2.25rem; }
+
+    .section-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Profile */
+    .profile p {
+      font-size: 0.9375rem;
+      color: var(--text-sec);
+      line-height: 1.75;
+    }
+
+    /* Experience */
+    .job { margin-bottom: 1.75rem; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .job-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-head);
+    }
+
+    .job-company {
+      font-size: 0.9375rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .job-meta {
+      font-size: 0.8125rem;
+      color: var(--text-faint);
+      white-space: nowrap;
+    }
+
+    .job-location {
+      font-size: 0.8125rem;
+      color: var(--text-faint);
+    }
+
+    .job ul {
+      margin-top: 0.6rem;
+      padding-left: 1.1rem;
+      list-style: disc;
+    }
+
+    .job ul li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      line-height: 1.65;
+    }
+
+    /* Education */
+    .edu-entry {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-body);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.5rem 1.5rem;
+    }
+
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border-row);
+    }
+
+    .skill-name {
+      font-size: 0.875rem;
+      color: var(--text-sec);
+      font-weight: 500;
+    }
+
+    .skill-level {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: var(--badge-exp-bg);
+      color: var(--badge-exp-fg);
+    }
+
+    .skill-level.skillful {
+      background: var(--badge-ski-bg);
+      color: var(--badge-ski-fg);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .header, .body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .header-actions { position: static; margin-top: 1rem; }
+      .job-header { flex-direction: column; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: white; padding: 0; }
+      .card { box-shadow: none; border-radius: 0; }
+      .header-actions { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Header -->
+    <div class="header">
+      <h1>Muhammad Hassan Javed</h1>
+      <div class="title">PHP Laravel Developer</div>
+      <div class="contact">
+        <span>Lahore, Punjab, Pakistan</span>
+        <a href="tel:+923056292104">+923056292104</a>
+        <a href="mailto:hassanhafiz44@gmail.com">hassanhafiz44@gmail.com</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
+          <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a class="download-btn" href="/resume.pdf" download>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+
+    <div class="body">
+      <!-- Profile -->
+      <section class="profile">
+        <div class="section-label">Profile</div>
+        <p>PHP Laravel Developer with 6+ years of experience in PHP, Laravel, and CodeIgniter. Proficient in PHP 7 and 8 development, object-oriented programming, and PSR-12 practices. Skilled in building RESTful APIs and MySQL-backed applications while ensuring clean, maintainable code. Successfully upgraded legacy PHP applications and automated ETL workflows, resulting in enhanced performance tracking features used in production systems.</p>
+      </section>
+
+      <!-- Experience -->
+      <section>
+        <div class="section-label">Employment History</div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">Web Developer</span>
+              <span style="color:#94a3b8;margin:0 0.4rem">·</span>
+              <span class="job-company">Avas Flowers</span>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:baseline">
+              <span class="job-location">USA</span>
+              <span class="job-meta">Oct 2023 — Apr 2026</span>
+            </div>
+          </div>
+          <ul>
+            <li>Modernized and maintained PHP web applications, focusing on PHP 7 and 8, ensuring compatibility and performance improvements.</li>
+            <li>Upgraded legacy projects to the latest versions of Laravel and CodeIgniter, enhancing code quality and maintainability.</li>
+            <li>Resolved client tickets promptly, leading to increased user satisfaction and a consistent 5-star Upwork rating.</li>
+            <li>Employed Git for version control, ensuring clean code practices and efficient project management.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">Full Stack CodeIgniter and Laravel Developer</span>
+              <span style="color:#94a3b8;margin:0 0.4rem">·</span>
+              <span class="job-company">Invocore Inc</span>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:baseline">
+              <span class="job-location">Malaysia</span>
+              <span class="job-meta">Jan 2020 — Oct 2023</span>
+            </div>
+          </div>
+          <ul>
+            <li>Engineered a 100-point Merit System for employee performance tracking, utilizing object-oriented programming principles to ensure objective and transparent evaluations.</li>
+            <li>Developed scalable features for Invocore's core time-calculation product and various Laravel projects, adhering to PSR-12 standards for clean code.</li>
+            <li>Implemented dependency injection in Laravel applications, enhancing modularity and maintainability.</li>
+            <li>Automated ETL processes for downloading, normalizing, and storing sales data from Shopee and Lazada, improving data processing efficiency.</li>
+            <li>Designed and maintained MySQL database schemas for applications like Kaolin Inventory and ELR illuminator calculator, employing Eloquent ORM and query builders to prevent SQL injection vulnerabilities.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">Xamarin Forms Mobile App Developer</span>
+              <span style="color:#94a3b8;margin:0 0.4rem">·</span>
+              <span class="job-company">UV Soft Solutions</span>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:baseline">
+              <span class="job-location">Lahore</span>
+              <span class="job-meta">May 2018 — Aug 2018</span>
+            </div>
+          </div>
+          <ul>
+            <li>Developed user-friendly mobile interfaces using JavaScript, enhancing user experience for the 'GB Paper Receipt' app.</li>
+            <li>Integrated RESTful APIs to improve app functionality and conducted thorough testing to ensure reliability.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section>
+        <div class="section-label">Education</div>
+        <div class="edu-entry">Bachelor of Computer Science</div>
+      </section>
+
+      <!-- Skills -->
+      <section>
+        <div class="section-label">Areas of Expertise</div>
+        <div class="skills-grid">
+          <div class="skill-row"><span class="skill-name">PHP 7 and 8</span><span class="skill-level">Experienced</span></div>
+          <div class="skill-row"><span class="skill-name">Laravel</span><span class="skill-level">Experienced</span></div>
+          <div class="skill-row"><span class="skill-name">CodeIgniter</span><span class="skill-level">Experienced</span></div>
+          <div class="skill-row"><span class="skill-name">Object-Oriented Programming</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">PSR Standards</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">Dependency Injection</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">Composer</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">Git</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">MySQL</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">RESTful APIs</span><span class="skill-level skillful">Skillful</span></div>
+          <div class="skill-row"><span class="skill-name">Clean Code</span><span class="skill-level">Experienced</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script>
+    function isDark() {
+      var t = document.documentElement.getAttribute('data-theme');
+      if (t === 'dark') return true;
+      if (t === 'light') return false;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function applyIcon() {
+      document.getElementById('iconSun').style.display  = isDark() ? 'block' : 'none';
+      document.getElementById('iconMoon').style.display = isDark() ? 'none'  : 'block';
+    }
+
+    function toggleTheme() {
+      var next = isDark() ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      applyIcon();
+    }
+
+    applyIcon();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyIcon);
+  </script>
+</body>
+</html>
