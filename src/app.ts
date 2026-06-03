@@ -21,10 +21,20 @@ app.get('/resume.pdf', (c) => {
   })
 })
 
-// SPA catch-all — serves the React shell for all other routes
-// /dist/* (JS bundle + CSS) is served directly by nginx from public/
+const shell = () =>
+  new Response(Bun.file(new URL('./client/index.html', import.meta.url)), {
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+  })
+
+// Known SPA routes
+app.get('/', shell)
+app.get('/portfolio', shell)
+
+// Everything else is a 404 — serve the shell with a 404 status so React Router
+// renders the NotFound page while crawlers still get the correct status code.
 app.get('*', () => {
   return new Response(Bun.file(new URL('./client/index.html', import.meta.url)), {
+    status: 404,
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   })
 })
