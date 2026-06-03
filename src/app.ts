@@ -5,6 +5,12 @@ const app = new Hono()
 
 app.use('*', requestLogger())
 
+app.get('/robots.txt', (c) => {
+  return new Response('User-agent: *\nAllow: /\n', {
+    headers: { 'Content-Type': 'text/plain' },
+  })
+})
+
 app.get('/resume.pdf', (c) => {
   const file = Bun.file(new URL('../public/hassan-javed-resume.pdf', import.meta.url))
   return new Response(file, {
