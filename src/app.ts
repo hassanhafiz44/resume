@@ -21,17 +21,8 @@ app.get('/resume.pdf', (c) => {
   })
 })
 
-const shell = () =>
-  new Response(Bun.file(new URL('./client/index.html', import.meta.url)), {
-    headers: { 'Content-Type': 'text/html; charset=utf-8' },
-  })
-
-// Known SPA routes
-app.get('/', shell)
-app.get('/portfolio', shell)
-
-// Everything else is a 404 — serve the shell with a 404 status so React Router
-// renders the NotFound page while crawlers still get the correct status code.
+// In production, nginx serves / and /portfolio as pre-rendered static HTML.
+// Bun only handles routes nginx can't — 404 for unknown paths.
 app.get('*', () => {
   return new Response(Bun.file(new URL('./client/index.html', import.meta.url)), {
     status: 404,

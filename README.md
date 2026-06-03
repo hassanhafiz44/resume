@@ -67,7 +67,13 @@ sudo systemctl status resume
 #            add_header Cache-Control "public, immutable";
 #        }
 #
+#        # Serve pre-rendered HTML for known routes; fall back to Bun for 404s
 #        location / {
+#            root /var/www/resume/public;
+#            try_files $uri $uri.html @bun;
+#        }
+#
+#        location @bun {
 #            proxy_pass http://127.0.0.1:PORT;
 #            proxy_set_header Host $host;
 #            proxy_set_header X-Real-IP $remote_addr;
@@ -84,4 +90,5 @@ sudo systemctl status resume
 Push to `main` → GitHub Actions runs typecheck on `ubuntu-latest`, then deploys via the self-hosted Pi runner:
 - pulls latest code into `/var/www/resume`
 - runs `bun install`
+- runs `bun run build` (compiles CSS, JS bundle, and pre-renders HTML)
 - restarts the `resume` systemd service

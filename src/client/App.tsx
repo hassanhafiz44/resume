@@ -1,5 +1,4 @@
 import { Routes, Route, Outlet } from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async'
 import Nav from './components/Nav'
 import Resume from './pages/Resume'
 import Portfolio from './pages/Portfolio'
@@ -16,14 +15,12 @@ function Layout() {
 
 export default function App() {
   return (
-    <HelmetProvider>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Resume />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </HelmetProvider>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Resume />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   )
 }

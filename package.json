@@ -18,7 +18,8 @@
     "dev": "bun run --hot src/server.ts",
     "build:css": "bunx @tailwindcss/cli -i src/client/styles/tailwind.css -o public/dist/main.css --minify",
     "build:js": "bun build src/client/main.tsx --outdir public/dist --target browser --minify",
-    "build": "bun run build:css && bun run build:js"
+    "build:prerender": "bun scripts/prerender.tsx",
+    "build": "bun run build:css && bun run build:js && bun run build:prerender"
   },
   "trustedDependencies": [
     "@parcel/watcher"
