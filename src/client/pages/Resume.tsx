@@ -19,7 +19,10 @@ const jsonLd = {
     addressCountry: 'PK',
   },
   url: 'https://hassanpi.com/',
-  sameAs: [], // add LinkedIn / GitHub URLs here
+  sameAs: [
+    'https://github.com/hassanhafiz44',
+    'https://www.linkedin.com/in/hassanhafiz44',
+  ],
   knowsAbout: ['PHP', 'Laravel', 'CodeIgniter', 'MySQL', 'RESTful APIs', 'Git'],
 }
 

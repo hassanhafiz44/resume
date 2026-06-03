@@ -17,6 +17,12 @@ export default function Header() {
         <a href="mailto:hassanhafiz44@gmail.com" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
           hassanhafiz44@gmail.com
         </a>
+        <a href="https://github.com/hassanhafiz44" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          github.com/hassanhafiz44
+        </a>
+        <a href="https://www.linkedin.com/in/hassanhafiz44" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          linkedin.com/in/hassanhafiz44
+        </a>
       </div>
       <HeaderActions />
     </div>
