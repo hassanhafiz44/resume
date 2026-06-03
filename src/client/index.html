@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Hassan Javed — Resume</title>
+  <!-- Prevent flash of wrong theme before React loads -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) {
+        var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (t === systemTheme) {
+          localStorage.removeItem('theme');
+        } else {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/styles/resume.css" />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/dist/main.js"></script>
+</body>
+</html>

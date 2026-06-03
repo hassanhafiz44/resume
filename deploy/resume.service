@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/var/www/resume
-ExecStart=/home/hassan/.bun/bin/bun src/index.ts
+ExecStart=/home/hassan/.bun/bin/bun src/server.ts
 Restart=always
 RestartSec=5
 Environment=NODE_ENV=production

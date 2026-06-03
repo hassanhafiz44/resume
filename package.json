@@ -1,9 +1,17 @@
 {
   "name": "resume",
+  "dependencies": {
+    "hono": "^4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/react": "^18",
+    "@types/react-dom": "^18"
   },
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/server.ts",
+    "build": "bun build src/client/main.tsx --outdir src/client/dist --target browser --minify"
   }
 }

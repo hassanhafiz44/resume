@@ -2,7 +2,8 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
+    "jsxImportSource": "react",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["bun"],
     "moduleResolution": "bundler",
     "module": "esnext",
