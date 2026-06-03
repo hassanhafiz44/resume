@@ -14,7 +14,8 @@ Bun.serve({
   port: Number(process.env.PORT) || 8086,
 
   fetch(req, server) {
-    const ip   = server.requestIP(req)?.address ?? '-'
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded ? forwarded.split(',')[0].trim() : (server.requestIP(req)?.address ?? '-')
     const path = new URL(req.url).pathname
 
     if (req.method === 'GET' && path === '/') {
