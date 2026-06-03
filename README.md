@@ -39,7 +39,10 @@ sudo systemctl status resume
 #        listen 80;
 #        server_name yourdomain.com;
 #
-#        # Serve favicons and web manifest directly
+#        # nginx serves CSS, JS bundle, and favicons directly — never hits Bun
+#        location /styles/ { root /var/www/resume/public; try_files $uri =404; }
+#        location /dist/   { root /var/www/resume/public; try_files $uri =404; }
+#
 #        location ~* ^/(favicon\.ico|favicon-\d+x\d+\.png|apple-touch-icon\.png|android-chrome-\d+x\d+\.png|site\.webmanifest)$ {
 #            root /var/www/resume/public;
 #            access_log off;
