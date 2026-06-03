@@ -12,6 +12,6 @@
   },
   "scripts": {
     "dev": "bun run --hot src/server.ts",
-    "build": "bun build src/client/main.tsx --outdir src/client/dist --target browser --minify"
+    "build": "bun build src/client/main.tsx --outdir public/dist --target browser --minify"
   }
 }

@@ -37,7 +37,7 @@ jobs:
         run: cd /var/www/resume && bun install --frozen-lockfile --production
 
       - name: Build client
-        run: cd /var/www/resume && bun build src/client/main.tsx --outdir src/client/dist --target browser --minify
+        run: cd /var/www/resume && bun build src/client/main.tsx --outdir public/dist --target browser --minify
 
       - name: Restart service
         run: sudo systemctl restart resume
