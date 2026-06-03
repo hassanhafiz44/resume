@@ -39,6 +39,13 @@ sudo systemctl status resume
 #        listen 80;
 #        server_name yourdomain.com;
 #
+#        # Serve favicons and web manifest directly
+#        location ~* ^/(favicon\.ico|favicon-\d+x\d+\.png|apple-touch-icon\.png|android-chrome-\d+x\d+\.png|site\.webmanifest)$ {
+#            root /var/www/resume/public;
+#            access_log off;
+#            expires 30d;
+#        }
+#
 #        location / {
 #            proxy_pass http://127.0.0.1:PORT;
 #            proxy_set_header Host $host;
