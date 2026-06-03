@@ -70,7 +70,7 @@ sudo systemctl status resume
 #        # Serve pre-rendered HTML for known routes; fall back to Bun for 404s
 #        location / {
 #            root /var/www/resume/public;
-#            try_files $uri $uri.html @bun;
+#            try_files $uri $uri.html $uri/index.html @bun;
 #        }
 #
 #        location @bun {
