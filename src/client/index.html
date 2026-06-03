@@ -9,14 +9,9 @@
     (function() {
       var t = localStorage.getItem('theme');
       var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var systemTheme = systemDark ? 'dark' : 'light';
-      if (t === systemTheme) {
-        localStorage.removeItem('theme');
-        t = null;
-      }
-      var isDark = t === 'dark' || (!t && systemDark);
+      var isDark = t === 'dark' || (t !== 'light' && systemDark);
       if (isDark) document.documentElement.classList.add('dark');
-      if (t) document.documentElement.setAttribute('data-theme', t);
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
   <link rel="stylesheet" href="/dist/main.css" />

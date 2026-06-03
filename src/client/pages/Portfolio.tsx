@@ -15,11 +15,11 @@ export default function Portfolio() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://hassanpi.com/portfolio" />
         <meta property="og:title" content="Portfolio — Muhammad Hassan Javed" />
-        <meta property="og:description" content="Five production PHP/Laravel projects including invoTIME, Kaolin Inventory, ELR Illuminator Calculator, and Avas Flowers." />
+        <meta property="og:description" content="Five production PHP/Laravel projects: invoTIME, Kaolin Inventory, ELR Illuminator Calculator, US Coast Guard Questions, and Avas Flowers." />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Portfolio — Muhammad Hassan Javed" />
-        <meta name="twitter:description" content="Five production PHP/Laravel projects including invoTIME, Kaolin Inventory, ELR Illuminator Calculator, and Avas Flowers." />
+        <meta name="twitter:description" content="Five production PHP/Laravel projects: invoTIME, Kaolin Inventory, ELR Illuminator Calculator, US Coast Guard Questions, and Avas Flowers." />
       </Helmet>
 
       <div className="max-w-3xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-md overflow-hidden transition-colors duration-200">

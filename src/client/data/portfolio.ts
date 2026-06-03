@@ -13,7 +13,7 @@ export const projects: Project[] = [
     description:
       'Time tracking and payroll management platform used by Malaysian companies. Built core time-calculation features and scalable employee management modules.',
     url: 'https://invocore.com.my/app/invotime',
-    tags: ['Codeigniter', 'PHP', 'MySQL', 'REST API'],
+    tags: ['CodeIgniter', 'PHP', 'MySQL', 'REST API'],
   },
   {
     name: 'Kaolin Inventory Management',
