@@ -1,19 +1,16 @@
-import Header from './components/Header'
-import Profile from './components/Profile'
-import Experience from './components/Experience'
-import Education from './components/Education'
-import Skills from './components/Skills'
+import { Routes, Route } from 'react-router-dom'
+import Nav from './components/Nav'
+import Resume from './pages/Resume'
+import Portfolio from './pages/Portfolio'
 
 export default function App() {
   return (
-    <div className="card">
-      <Header />
-      <div className="body">
-        <Profile />
-        <Experience />
-        <Education />
-        <Skills />
-      </div>
-    </div>
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Resume />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+      </Routes>
+    </>
   )
 }

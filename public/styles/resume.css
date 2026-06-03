@@ -306,3 +306,103 @@ section { margin-top: 2.25rem; }
   .card { box-shadow: none; border-radius: 0; }
   .header-actions { display: none; }
 }
+
+/* ── Nav ── */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.nav-link {
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover { background: var(--toggle-bg); color: var(--text-body); }
+.nav-link.active { background: var(--toggle-bg); color: var(--text-head); font-weight: 600; }
+
+/* ── Portfolio ── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.portfolio-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.portfolio-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.portfolio-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-head);
+}
+
+.portfolio-card-arrow {
+  width: 15px;
+  height: 15px;
+  color: var(--text-faint);
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.portfolio-card:hover .portfolio-card-arrow { color: var(--accent); }
+
+.portfolio-card-company {
+  font-size: 0.8125rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.portfolio-card-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.portfolio-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.portfolio-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--badge-ski-bg);
+  color: var(--badge-ski-fg);
+}
+
+@media (max-width: 640px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
