@@ -8,17 +8,18 @@
   <script>
     (function() {
       var t = localStorage.getItem('theme');
-      if (t) {
-        var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        if (t === systemTheme) {
-          localStorage.removeItem('theme');
-        } else {
-          document.documentElement.setAttribute('data-theme', t);
-        }
+      var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var systemTheme = systemDark ? 'dark' : 'light';
+      if (t === systemTheme) {
+        localStorage.removeItem('theme');
+        t = null;
       }
+      var isDark = t === 'dark' || (!t && systemDark);
+      if (isDark) document.documentElement.classList.add('dark');
+      if (t) document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <link rel="stylesheet" href="/styles/resume.css" />
+  <link rel="stylesheet" href="/dist/main.css" />
 </head>
 <body>
   <div id="root"></div>

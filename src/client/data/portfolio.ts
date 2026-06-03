@@ -13,7 +13,7 @@ export const projects: Project[] = [
     description:
       'Time tracking and payroll management platform used by Malaysian companies. Built core time-calculation features and scalable employee management modules.',
     url: 'https://invocore.com.my/app/invotime',
-    tags: ['Laravel', 'PHP', 'MySQL', 'REST API'],
+    tags: ['Codeigniter', 'PHP', 'MySQL', 'REST API'],
   },
   {
     name: 'Kaolin Inventory Management',
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     description:
       'Study platform for merchant mariners preparing for US Coast Guard licensing exams. Features practice exams, searchable question banks, and community forums.',
     url: 'https://www.uscgq.com/',
-    tags: ['PHP', 'CodeIgniter', 'MySQL'],
+    tags: ['PHP', 'Vanilla PHP', 'MySQL'],
   },
   {
     name: 'Avas Flowers',
