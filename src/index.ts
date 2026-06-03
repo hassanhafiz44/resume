@@ -1,7 +1,7 @@
 import index from './index.html'
 
 Bun.serve({
-  port: 8086,
+  port: Number(process.env.PORT) || 8086,
   routes: {
     '/': index,
     '/resume.pdf': () => {
