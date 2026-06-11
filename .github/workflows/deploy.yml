@@ -24,20 +24,19 @@ jobs:
 
   deploy:
     needs: test
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Pull latest code
-        run: |
-          cd /var/www/resume
-          git fetch origin main
-          git reset --hard origin/main
-
-      - name: Install dependencies
-        run: cd /var/www/resume && bun install --frozen-lockfile
-
-      - name: Build client
-        run: cd /var/www/resume && bun run build
-
-      - name: Restart service
-        run: sudo systemctl restart resume
+      - name: Deploy to Lightsail via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          script: |
+            cd /var/www/resume
+            git fetch origin main
+            git reset --hard origin/main
+            bun install --frozen-lockfile
+            bun run build
+            sudo systemctl restart resume

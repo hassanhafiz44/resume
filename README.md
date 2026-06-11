@@ -9,11 +9,16 @@ bun install
 bun run dev        # http://localhost:8086
 ```
 
-## Raspberry Pi — one-time setup
+## Lightsail — one-time setup
 
-Run these once on the Pi to bootstrap the app and CI runner:
+Run these once on the Lightsail instance to bootstrap the app:
 
 ```sh
+# 0. Install Bun and git (if not already present)
+sudo apt-get update && sudo apt-get install -y git unzip
+curl -fsSL https://bun.sh/install | bash
+# re-login or `source ~/.bashrc` so `bun` is on PATH
+
 # 1. Clone
 sudo mkdir -p /var/www/resume
 sudo chown $USER:$USER /var/www/resume
@@ -21,18 +26,19 @@ git clone <your-github-repo-url> /var/www/resume
 cd /var/www/resume && bun install
 
 # 2. Install systemd service
-# Edit deploy/resume.service: update ExecStart path if bun is not at /home/pi/.bun/bin/bun
-#   which bun   ← run this on the Pi to find the correct path
+# Edit deploy/resume.service: update ExecStart path to match your user
+#   which bun   ← run this to find the correct path, e.g. /home/ubuntu/.bun/bin/bun
 sudo cp deploy/resume.service /etc/systemd/system/resume.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now resume
 sudo systemctl status resume
 
-# 3. Allow runner to restart the service without a password
+# 3. Allow the deploy user to restart the service without a password
 #    Add this line via: sudo visudo
-#    <runner-user> ALL=(ALL) NOPASSWD: /bin/systemctl restart resume
+#    <ssh-deploy-user> ALL=(ALL) NOPASSWD: /bin/systemctl restart resume
 
-# 4. Nginx — proxy port PORT
+# 4. Nginx — install and proxy port PORT
+sudo apt-get install -y nginx
 #    Add a server block to /etc/nginx/sites-available/resume:
 #
 #    server {
@@ -85,10 +91,27 @@ sudo systemctl status resume
 #    sudo nginx -t && sudo systemctl reload nginx
 ```
 
+```sh
+# 5. Lightsail networking firewall
+#    In the Lightsail console, open the instance's "Networking" tab and add
+#    firewall rules for HTTP (80) and HTTPS (443) — SSH (22) is open by default.
+```
+
 ## CI/CD
 
-Push to `main` → GitHub Actions runs typecheck on `ubuntu-latest`, then deploys via the self-hosted Pi runner:
+Push to `main` → GitHub Actions runs typecheck on `ubuntu-latest`, then deploys to the Lightsail instance over SSH:
+- connects via SSH using `appleboy/ssh-action`
 - pulls latest code into `/var/www/resume`
 - runs `bun install`
 - runs `bun run build` (compiles CSS, JS bundle, and pre-renders HTML)
 - restarts the `resume` systemd service
+
+### Required GitHub secrets
+
+Set these in the repo under **Settings → Secrets and variables → Actions**:
+
+| Secret | Value |
+|---|---|
+| `LIGHTSAIL_HOST` | Public IP or domain of the Lightsail instance |
+| `LIGHTSAIL_USER` | SSH username (e.g. `ubuntu`) |
+| `LIGHTSAIL_SSH_KEY` | Private key (PEM contents) for a key whose public half is in the instance's `~/.ssh/authorized_keys` |
