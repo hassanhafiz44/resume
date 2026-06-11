@@ -95,6 +95,14 @@ sudo apt-get install -y nginx
 # 5. Lightsail networking firewall
 #    In the Lightsail console, open the instance's "Networking" tab and add
 #    firewall rules for HTTP (80) and HTTPS (443) — SSH (22) is open by default.
+
+# 6. HTTPS via Let's Encrypt
+#    Point your domain's A record (and www) at the instance's public IP first.
+sudo apt-get install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com --redirect
+#    Certbot edits the nginx server block to add the SSL listener and an
+#    HTTP -> HTTPS redirect, and installs a systemd timer (certbot.timer)
+#    that auto-renews the certificate before it expires.
 ```
 
 ## CI/CD
