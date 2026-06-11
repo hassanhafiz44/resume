@@ -24,11 +24,7 @@ const btnInactive = 'bg-transparent text-slate-400 dark:text-slate-500 hover:tex
 const btnActive = 'bg-white dark:bg-slate-600 text-slate-900 dark:text-slate-100 shadow-sm'
 
 export default function ThemeSwitcher() {
-  const [mode, setMode] = useState<ThemeMode>('system')
-
-  useEffect(() => {
-    setMode(getMode())
-  }, [])
+  const [mode, setMode] = useState<ThemeMode>(getMode)
 
   function handleSetTheme(next: ThemeMode) {
     if (next === 'system') {
