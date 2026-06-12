@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 type ThemeMode = 'light' | 'dark' | 'system'
 
 function getMode(): ThemeMode {
+  if (typeof localStorage === 'undefined') return 'system'
   const value = localStorage.getItem('theme')
   return value === 'light' || value === 'dark' ? value : 'system'
 }
