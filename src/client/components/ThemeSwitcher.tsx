@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 
 function getMode(): ThemeMode {
-  if (typeof localStorage === 'undefined') return 'system'
   const value = localStorage.getItem('theme')
   return value === 'light' || value === 'dark' ? value : 'system'
 }
@@ -25,7 +24,13 @@ const btnInactive = 'bg-transparent text-slate-400 dark:text-slate-500 hover:tex
 const btnActive = 'bg-white dark:bg-slate-600 text-slate-900 dark:text-slate-100 shadow-sm'
 
 export default function ThemeSwitcher() {
-  const [mode, setMode] = useState<ThemeMode>(getMode)
+  const [mode, setMode] = useState<ThemeMode>('system')
+
+  // Corrects the SSR-rendered 'system' default to the stored preference
+  // before paint, avoiding both a hydration mismatch and a visible flicker.
+  useLayoutEffect(() => {
+    setMode(getMode())
+  }, [])
 
   function handleSetTheme(next: ThemeMode) {
     if (next === 'system') {
