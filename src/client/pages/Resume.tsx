@@ -31,7 +31,7 @@ export default function Resume() {
     <>
       <Helmet>
         <title>Muhammad Hassan Javed — PHP Laravel Developer</title>
-        <meta name="description" content="Resume of Muhammad Hassan Javed, PHP Laravel Developer with 6+ years building scalable web applications, RESTful APIs, and MySQL-backed systems in Laravel and CodeIgniter." />
+        <meta name="description" content="Muhammad Hassan Javed — PHP Laravel Developer with 6+ years building scalable web apps, RESTful APIs, and MySQL-backed systems in Laravel & CodeIgniter." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://hassanpi.com/" />
 

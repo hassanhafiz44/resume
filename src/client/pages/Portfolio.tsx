@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { projects } from '../data/portfolio'
-import ThemeSwitcher from '../components/ThemeSwitcher'
+import HeaderActions from '../components/HeaderActions'
 import SectionLabel from '../components/SectionLabel'
 
 export default function Portfolio() {
@@ -8,7 +8,7 @@ export default function Portfolio() {
     <>
       <Helmet>
         <title>Portfolio — Muhammad Hassan Javed</title>
-        <meta name="description" content="Selected PHP/Laravel projects by Muhammad Hassan Javed: invoTIME, Kaolin Inventory Management, ELR Illuminator Calculator, US Coast Guard Questions, and Avas Flowers." />
+        <meta name="description" content="Selected PHP/Laravel projects by Muhammad Hassan Javed: invoTIME, Kaolin Inventory, ELR Illuminator Calculator, US Coast Guard Questions & Avas Flowers." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://hassanpi.com/portfolio" />
 
@@ -25,10 +25,8 @@ export default function Portfolio() {
       <div className="max-w-3xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-md overflow-hidden transition-colors duration-200">
         <div className="relative px-10 pt-10 pb-8 border-b border-slate-200 dark:border-slate-700 max-sm:px-6">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Portfolio</h1>
-          <div className="mt-1 text-base font-medium text-blue-600 dark:text-blue-400">Selected Projects</div>
-          <div className="absolute top-10 right-10 max-sm:static max-sm:mt-4 print:hidden">
-            <ThemeSwitcher />
-          </div>
+          <div className="mt-1 text-base font-medium text-blue-600 dark:text-blue-400">Portfolio of Selected Projects</div>
+          <HeaderActions />
         </div>
 
         <div className="px-10 pb-12 max-sm:px-6">

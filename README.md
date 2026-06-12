@@ -45,6 +45,9 @@ sudo apt-get install -y nginx
 #        listen 80;
 #        server_name yourdomain.com;
 #
+#        # Ensures Content-Type headers include charset=utf-8
+#        charset utf-8;
+#
 #        # Gzip — critical for the JS bundle (403 KB → ~120 KB)
 #        gzip on;
 #        gzip_types text/plain text/css application/javascript application/json image/svg+xml application/manifest+json;
