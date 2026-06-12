@@ -103,6 +103,33 @@ sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com --redirect
 #    Certbot edits the nginx server block to add the SSL listener and an
 #    HTTP -> HTTPS redirect, and installs a systemd timer (certbot.timer)
 #    that auto-renews the certificate before it expires.
+
+# 7. Redirect www -> apex domain (avoids duplicate-content / canonical issues
+#    in Google Search Console). Certbot's --redirect only adds HTTP->HTTPS
+#    redirects for each host — it does NOT consolidate www into the apex.
+#    Add a dedicated HTTPS server block for the www host, and point the
+#    www case of certbot's HTTP redirect at the apex domain too:
+#
+#    server {
+#        server_name www.yourdomain.com;
+#        listen 443 ssl; # managed by Certbot
+#        ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; # managed by Certbot
+#        ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; # managed by Certbot
+#        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+#        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+#        return 301 https://yourdomain.com$request_uri;
+#    }
+#
+#    Then change the certbot-managed HTTP block's www case from:
+#        if ($host = www.yourdomain.com) {
+#            return 301 https://$host$request_uri;
+#        }
+#    to:
+#        if ($host = www.yourdomain.com) {
+#            return 301 https://yourdomain.com$request_uri;
+#        }
+#
+#    sudo nginx -t && sudo systemctl reload nginx
 ```
 
 ## CI/CD

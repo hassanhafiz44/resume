@@ -6,7 +6,7 @@ const app = new Hono()
 app.use('*', requestLogger())
 
 app.get('/robots.txt', (c) => {
-  return new Response('User-agent: *\nAllow: /\n', {
+  return new Response('User-agent: *\nAllow: /\n\nSitemap: https://hassanpi.com/sitemap.xml\n', {
     headers: { 'Content-Type': 'text/plain' },
   })
 })

@@ -17,6 +17,21 @@ const routes = [
   { path: '/portfolio', output: 'public/portfolio.html' },
 ]
 
+const baseUrl = 'https://hassanpi.com'
+const lastmod = new Date().toISOString().slice(0, 10)
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${routes.map(({ path }) => `  <url>
+    <loc>${baseUrl}${path}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </url>`).join('\n')}
+</urlset>
+`
+
+await Bun.write('public/sitemap.xml', sitemap)
+console.log('Wrote public/sitemap.xml')
+
 for (const { path, output } of routes) {
   const helmetContext: { helmet?: any } = {}
 
